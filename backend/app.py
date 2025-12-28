@@ -15,7 +15,7 @@ CORS(app)
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 # Text-only chat endpoint (keeps chat history)
-model = genai.GenerativeModel("gemini-2.0-flash-lite-001")
+model = genai.GenerativeModel("gemini-2.5-flash")
 chat = model.start_chat(history=[])
 
 @app.route('/chat', methods=['POST'])
@@ -45,7 +45,7 @@ def image_chat_endpoint():
     try:
         image_bytes = file.read()
         image = Image.open(io.BytesIO(image_bytes))
-        vision_model = genai.GenerativeModel('gemini-2.5-pro')
+        vision_model = genai.GenerativeModel('gemini-3-flash-preview')
         contents = []
         if prompt:
             contents.append(prompt)
